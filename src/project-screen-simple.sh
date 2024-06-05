@@ -27,7 +27,7 @@ B="Duplicate"
 C="Extend"
 D="Second screen only"
 
-options="$A\n$B\n$C\n$D"
+options=$(printf "%s\n%s\n%s\n%s\n" "$A" "$B" "$C" "$D")
 
 selected=$(echo "$options" | rofi -dmenu -theme-str '@import "config-project-screen.rasi"' -markup-rows)
 case "$selected" in

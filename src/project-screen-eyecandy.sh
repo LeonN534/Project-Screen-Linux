@@ -4,7 +4,7 @@ SYSTEM_LANG="$LANG"
 export LANG='POSIX'
 exec >/dev/null 2>&1
 
-ICON_DIR=""
+ICON_DIR="~/.icons/project-screen"
 PC_SCREEN_ONLY_ICON="$ICON_DIR/pc-screen-only.png"
 DUPLICATE_ICON="$ICON_DIR/duplicate.png"
 EXTEND_ICON="$ICON_DIR/extend.png"

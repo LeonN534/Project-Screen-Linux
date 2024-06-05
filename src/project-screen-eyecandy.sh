@@ -1,12 +1,4 @@
-#!/usr/bin/env sh
-
-# Desc:   Windows-like script for project screen.
-# Author: LeonN534 <alternate-se7en@pm.me>
-# URL:    
-
-# SPDX-License-Identifier: ISC
-
-# shellcheck disable=SC2016
+#!/usr/bin/sh
 
 SYSTEM_LANG="$LANG"
 export LANG='POSIX'
@@ -18,13 +10,13 @@ DUPLICATE_ICON="$ICON_DIR/duplicate.png"
 EXTEND_ICON="$ICON_DIR/extend.png"
 SECOND_SCREEN_ONLY_ICON="$ICON_DIR/second-screen-only.png"
 
+packages="xrandr mons rofi"
+
 command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-packages=("xrandr" "mons" "rofi")
-
-for package in "${packages[@]}"; do
+for package in $packages; do
     if ! command_exists "$package"; then
         dunstify 'Project screen' "$package! not found!" \
             -h string:synchronous:project-screen \
@@ -80,8 +72,7 @@ D="<span font_desc='${ROW_ICON_FONT}' weight='bold'>${D_}</span>   Second screen
 
 options="$A\n$B\n$C\n$D"
 
-selected=$(echo -e "$options" | rofi -dmenu -theme-str '@import "config-project-screen.rasi"' -markup-rows)
-
+selected=$(echo "$options" | rofi -dmenu -theme-str '@import "config-project-screen.rasi"' -markup-rows)
 case "$selected" in
     *"$A_"*)
         mons -o

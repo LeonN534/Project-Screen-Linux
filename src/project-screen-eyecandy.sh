@@ -4,7 +4,7 @@ SYSTEM_LANG="$LANG"
 export LANG='POSIX'
 exec >/dev/null 2>&1
 
-ICON_DIR="~/.icons/project-screen"
+ICON_DIR="$HOME/.icons/project-screen"
 PC_SCREEN_ONLY_ICON="$ICON_DIR/pc-screen-only.png"
 DUPLICATE_ICON="$ICON_DIR/duplicate.png"
 EXTEND_ICON="$ICON_DIR/extend.png"
@@ -75,39 +75,39 @@ options=$(printf "%s\n%s\n%s\n%s\n" "$A" "$B" "$C" "$D")
 selected=$(echo "$options" | rofi -dmenu -theme-str '@import "config-project-screen.rasi"' -markup-rows)
 
 case "$selected" in
-    *"$A_"*)
+    *"$A"*)
         mons -o
         dunstify 'Project screen' "Projecting only primary monitor" \
             -h string:synchronous:project-screen \
             -a "project-screen" \
-            -i "$PC_SCREEN_ONLY_ICON" \
+            -I "$PC_SCREEN_ONLY_ICON" \
             -u normal
         ;;
-    *"$B_"*)
+    *"$B"*)
         mons -d
         xrandr --output "$SECONDARY_MONITOR" --mode "$PRIMARY_RES"
         dunstify 'Project screen' "Duplicating monitor" \
             -h string:synchronous:project-screen \
             -a "project-screen" \
-            -i "$DUPLICATE_ICON" \
+            -I "$DUPLICATE_ICON" \
             -u normal
         ;;
-    *"$C_"*)
+    *"$C"*)
         mons -e right
         xrandr --output "$SECONDARY_MONITOR" --mode "$PRIMARY_RES"
         dunstify 'Project screen' "Extending primary monitor" \
             -h string:synchronous:project-screen \
             -a "project-screen" \
-            -i "$EXTEND_ICON" \
+            -I "$EXTEND_ICON" \
             -u normal
         ;;
-    *"$D_"*)
+    *"$D"*)
         mons -s
         xrandr --output "$SECONDARY_MONITOR" --mode "$PRIMARY_RES"
         dunstify 'Project screen' "Projecting only secondary monitor" \
             -h string:synchronous:project-screen \
             -a "project-screen" \
-            -i "$SECOND_SCREEN_ONLY_ICON" \
+            -I "$SECOND_SCREEN_ONLY_ICON" \
             -u normal
         ;;
 esac

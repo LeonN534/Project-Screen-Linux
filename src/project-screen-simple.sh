@@ -31,18 +31,18 @@ options=$(printf "%s\n%s\n%s\n%s\n" "$A" "$B" "$C" "$D")
 
 selected=$(echo "$options" | rofi -dmenu -markup-rows)
 case "$selected" in
-    *"$A_"*)
+    *"$A"*)
         mons -o
         ;;
-    *"$B_"*)
+    *"$B"*)
         mons -d
         xrandr --output $SECONDARY_MONITOR --mode $PRIMARY_RES
         ;;
-    *"$C_"*)
+    *"$C"*)
         mons -e right
         xrandr --output $SECONDARY_MONITOR --mode $PRIMARY_RES
         ;;
-    *"$D_"*)
+    *"$D"*)
         mons -s
         xrandr --output $SECONDARY_MONITOR --mode $PRIMARY_RES
         ;;
